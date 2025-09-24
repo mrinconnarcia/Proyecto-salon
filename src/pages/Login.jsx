@@ -13,6 +13,7 @@ export default function MobileLogin() {
     setTimeout(() => {
       setIsLoading(false);
       alert('¡Login exitoso!');
+      
     }, 2000);
   };
 
