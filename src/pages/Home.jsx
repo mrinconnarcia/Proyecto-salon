@@ -91,7 +91,6 @@ const CasaChetumal = () => {
     return () => clearInterval(interval);
   }, []);
 
-  // Cerrar menú móvil cuando se cambia el tamaño de pantalla
   useEffect(() => {
     const handleResize = () => {
       if (window.innerWidth >= 768) {
@@ -301,7 +300,7 @@ const CasaChetumal = () => {
             ))}
           </div>
 
-          {/* indicador del progreso del Video */}
+          {/* progreso del Video */}
           <div className="flex justify-center mt-12 space-x-3">
             {videos.map((_, index) => (
               <button
@@ -319,13 +318,11 @@ const CasaChetumal = () => {
       </section>
 
       <section id="paquetes" className="py-20 px-6 bg-gradient-to-br from-amber-50 via-orange-50 to-yellow-50 relative overflow-hidden">
-        {/* Elementos decorativos de fondo */}
         <div className="absolute top-10 left-10 w-32 h-32 bg-gradient-to-br from-amber-200/30 to-orange-200/30 rounded-full blur-xl animate-pulse"></div>
         <div className="absolute bottom-20 right-16 w-40 h-40 bg-gradient-to-tl from-yellow-200/20 to-orange-300/20 rounded-full blur-2xl animate-bounce"></div>
         <div className="absolute top-1/2 left-1/3 w-20 h-20 bg-amber-300/20 rounded-full blur-lg animate-ping"></div>
         
         <div className="container mx-auto text-center relative z-10">
-          {/* Título con decoración mejorada */}
           <div className="mb-20">
             <div className="inline-block relative">
               <h3 className="text-3xl md:text-4xl font-bold text-gray-800 mb-6 relative">
@@ -334,7 +331,6 @@ const CasaChetumal = () => {
                   Casa Chetumal?
                 </span>
               </h3>
-              {/* Línea decorativa animada */}
               <div className="flex justify-center items-center space-x-2 mb-4">
                 <div className="w-8 h-1 bg-gradient-to-r from-transparent to-amber-400 rounded-full"></div>
                 <div className="w-16 h-1 bg-gradient-to-r from-amber-400 to-orange-500 rounded-full"></div>
@@ -380,13 +376,10 @@ const CasaChetumal = () => {
                 key={index}
                 className={`group relative bg-white/80 backdrop-blur-lg rounded-3xl p-8 md:p-10 transform hover:scale-105 transition-all duration-500 ${feature.shadowColor} shadow-xl hover:shadow-2xl border border-white/50 ${feature.delay} animate-fade-in-up`}
               >
-                {/* Gradiente decorativo superior */}
                 <div className={`absolute top-0 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-20 h-20 bg-gradient-to-br ${feature.gradient} rounded-full opacity-20 group-hover:opacity-30 transition-opacity duration-300 blur-sm`}></div>
                 
-                {/* Borde brillante animado */}
                 <div className={`absolute inset-0 rounded-3xl bg-gradient-to-r ${feature.gradient} opacity-0 group-hover:opacity-20 transition-opacity duration-300 blur-sm -z-10`}></div>
                 
-                {/* Contenedor del icono con efecto glassmorphism */}
                 <div className={`relative mb-6 inline-flex items-center justify-center w-20 h-20 bg-gradient-to-br ${feature.gradient} rounded-2xl shadow-lg group-hover:shadow-xl transition-all duration-300 group-hover:rotate-6`}>
                   <div className="absolute inset-0 bg-white/20 rounded-2xl backdrop-blur-sm"></div>
                   <feature.icon 
@@ -395,17 +388,14 @@ const CasaChetumal = () => {
                   />
                 </div>
 
-                {/* Título con gradiente */}
                 <h4 className={`text-xl md:text-2xl font-bold mb-4 bg-gradient-to-r ${feature.gradient} bg-clip-text text-transparent group-hover:scale-105 transition-transform duration-300`}>
                   {feature.title}
                 </h4>
                 
-                {/* Descripción mejorada */}
                 <p className="text-gray-700 text-sm md:text-base leading-relaxed group-hover:text-gray-800 transition-colors duration-300">
                   {feature.description}
                 </p>
 
-                {/* Puntos decorativos */}
                 <div className="flex justify-center space-x-2 mt-6">
                   {[...Array(3)].map((_, i) => (
                     <div
@@ -416,13 +406,11 @@ const CasaChetumal = () => {
                   ))}
                 </div>
 
-                {/* Efecto de brillo en hover */}
                 <div className="absolute top-4 right-4 w-6 h-6 bg-white/40 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300 animate-ping"></div>
               </div>
             ))}
           </div>
 
-          {/* Sección adicional con estadísticas */}
           <div className="mt-20 grid grid-cols-2 md:grid-cols-4 gap-6 max-w-4xl mx-auto">
             {[
               { number: "500+", label: "Eventos Realizados", icon: PartyPopper },
@@ -448,7 +436,6 @@ const CasaChetumal = () => {
           </div>
         </div>
 
-        {/* CSS adicional para las animaciones */}
         <style jsx>{`
           @keyframes fade-in-up {
             from {
