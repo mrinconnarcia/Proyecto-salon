@@ -11,14 +11,28 @@ export default function NavbarAdmin() {
   };
 
   return (
-    <nav className="bg-gray-800 text-white px-4 py-3 flex justify-between">
-      <span>Bienvenido, {user?.name}</span>
-      <button
-        onClick={handleLogout}
-        className="bg-red-500 px-3 py-1 rounded hover:bg-red-600"
-      >
-        Cerrar Sesión
-      </button>
-    </nav>
+    <header className="bg-orange-200 backdrop-blur-md sticky top-0 z-50 transition-all duration-300" 
+      style={{ backgroundColor: "#D2B074", border: "None" }}>
+      <nav className="container mx-auto px-6 py-4">
+        <div className="flex items-center justify-between">
+          
+          <h2 className="text-lg md:text-xl lg:text-2xl font-semibold text-gray-800 leading-tight">
+              Bienvenido {" "}
+              <span className="bg-gradient-to-r from-amber-900 to-orange-950 bg-clip-text text-transparent">
+                {user?.name}
+              </span>
+          </h2>
+          <button
+            onClick={handleLogout}
+            className="bg-red-600 rounded-xl text-white font-semibold px-6 py-2.5 hover:bg-red-500"
+          >
+            Cerrar Sesión
+          </button>
+
+        </div>
+        
+      </nav>
+    </header>
+
   );
 }
