@@ -1,11 +1,14 @@
 import React, { useState, useEffect } from "react";
+import ReservationAlert from "../components/ReservationAlert";
+import ReservationModal from "../pages/Reservation";
+import NavbarHome from "../components/NavbarHome";
+import CartModal from "../components/CartModal";
 import {
   Play,
   MapPin,
   ClipboardPlus,
   Mail,
   Star,
-  Menu,
   X,
   MapPinned,
   Sparkles,
@@ -15,8 +18,8 @@ import {
   Clock,
   Phone,
   PartyPopper,
+  ShoppingCart,
 } from "lucide-react";
-import ReservationAlert from "../components/ReservationAlert";
 
 const CasaChetumal = () => {
   const [currentVideo, setCurrentVideo] = useState(0);
@@ -24,36 +27,27 @@ const CasaChetumal = () => {
   const [playingVideo, setPlayingVideo] = useState(null);
   const [showReservationModal, setShowReservationModal] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [cartItems, setCartItems] = useState([]);
+  const [isCartOpen, setIsCartOpen] = useState(false);
+
+  const handleAddToCart = (item) => {
+  setCartItems((prev) => [...prev, item]); // agrega al carrito
+};
+
+const handleCartClick = () => {
+  setIsCartOpen(true); // abre el modal del carrito
+};
 
   const videos = [
     {
       id: 1,
-      title: "Salón Principal",
+      title: "Salón",
       description: "Espacios elegantes diseñados para crear momentos únicos",
       thumbnail:
-        "https://images.unsplash.com/photo-1519167758481-83f550bb49b3?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+        "https://images.unsplash.com/photo-1519167758481-83f550bb49b3?q=80&w=1198&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
       videoUrl:
         "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4",
-    },
-    {
-      id: 2,
-      title: "Alberca y Jardines",
-      description:
-        "Ambientes al aire libre perfectos para cualquier celebración",
-      thumbnail:
-        "https://cdn.pixabay.com/photo/2019/12/28/19/44/house-4725577_1280.jpg",
-      videoUrl:
-        "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4",
-    },
-    {
-      id: 3,
-      title: "Decoración Personalizada",
-      description: "Cada detalle pensado para reflejar tu estilo personal",
-      thumbnail:
-        "https://images.unsplash.com/photo-1511795409834-ef04bbd61622?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-      videoUrl:
-        "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ElephantsDream.mp4",
-    },
+    }
   ];
 
   const handleVideoClick = (index) => {
@@ -104,90 +98,27 @@ const CasaChetumal = () => {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-amber-50 via-orange-50 to-yellow-50">
-      <header className="bg-orange-200 backdrop-blur-md shadow-lg sticky top-0 z-50 transition-all duration-300">
-        <nav className="container mx-auto px-6 py-4">
-          <div className="flex items-center justify-between">
-            <div className="flex items-center space-x-3">
-              <div className="w-12 h-12 bg-gradient-to-br from-amber-900 to-orange-950 rounded-full flex items-center justify-center">
-                <span className="text-white font-bold text-xl">C</span>
-              </div>
-              <div>
-                <h1 className="text-2xl font-bold bg-gradient-to-r from-amber-900 to-orange-950 bg-clip-text text-transparent">
-                  Casa Chetumal
-                </h1>
-                <p className="text-sm text-gray-900">Eventos Especiales</p>
-              </div>
-            </div>
+      <NavbarHome
+        isMobileMenuOpen={isMobileMenuOpen}
+        toggleMobileMenu={toggleMobileMenu}
+        handleNavClick={handleNavClick}
+        handleReservationClick={handleReservationClick}
+        handleCartClick={handleCartClick}
+        cartItems={cartItems.length}
+      />
 
-            <div className="hidden md:flex items-center space-x-8">
-              <a
-                href="#paquetes"
-                className="text-gray-950 hover:text-amber-950 transition-colors duration-300 font-medium"
-                onClick={() => handleNavClick("#paquetes")}
-              >
-                Paquetes
-              </a>
-              <a
-                href="#contacto"
-                className="text-gray-950 hover:text-amber-950 transition-colors duration-300 font-medium"
-                onClick={() => handleNavClick("#contacto")}
-              >
-                Contacto
-              </a>
-              <button
-                className="bg-gradient-to-r from-amber-900 to-orange-900 text-white px-6 py-2 rounded-full hover:from-amber-950 hover:to-orange-950 transform hover:scale-105 transition-all duration-300 shadow-lg"
-                onClick={handleReservationClick}
-              >
-                Reserva Ahora
-              </button>
-            </div>
-
-            <div className="md:hidden">
-              <button
-                onClick={toggleMobileMenu}
-                className="text-gray-900 hover:text-amber-950 transition-colors duration-300 p-2"
-                aria-label="Toggle mobile menu"
-              >
-                {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
-              </button>
-            </div>
-          </div>
-
-          <div
-            className={`md:hidden transition-all duration-300 ease-in-out ${
-              isMobileMenuOpen
-                ? "max-h-64 opacity-100 mt-4"
-                : "max-h-0 opacity-0 overflow-hidden"
-            }`}
-          >
-            <div className="py-4 border-t border-amber-300">
-              <div className="flex flex-col space-y-4">
-                <a
-                  href="#paquetes"
-                  className="text-gray-950 hover:text-amber-950 transition-colors duration-300 font-medium py-2 px-4 hover:bg-amber-100 rounded-lg"
-                  onClick={() => handleNavClick("#paquetes")}
-                >
-                  Paquetes
-                </a>
-                <a
-                  href="#contacto"
-                  className="text-gray-950 hover:text-amber-950 transition-colors duration-300 font-medium py-2 px-4 hover:bg-amber-100 rounded-lg"
-                  onClick={() => handleNavClick("#contacto")}
-                >
-                  Contacto
-                </a>
-                <button
-                  className="bg-gradient-to-r from-amber-900 to-orange-900 text-white px-6 py-3 rounded-full hover:from-amber-950 hover:to-orange-950 transition-all duration-300 shadow-lg mx-4 font-medium"
-                  onClick={handleReservationClick}
-                >
-                  <ClipboardPlus className="inline-block mr-2" size={16} />
-                  Reserva Ahora
-                </button>
-              </div>
-            </div>
-          </div>
-        </nav>
-      </header>
+      <button
+        onClick={handleCartClick}
+        className="md:hidden fixed bottom-6 right-6 z-40 bg-gradient-to-r from-amber-500 to-orange-500 text-white p-4 rounded-full shadow-2xl hover:from-amber-600 hover:to-orange-600 transform hover:scale-110 transition-all duration-300 animate-bounce"
+        aria-label="Carrito de compras"
+      >
+        <ShoppingCart size={24} />
+        {cartItems > 0 && (
+          <span className="absolute -top-2 -right-2 bg-gradient-to-r from-red-500 to-red-600 text-white text-xs rounded-full h-7 w-7 flex items-center justify-center font-bold animate-pulse border-2 border-white">
+            {cartItems}
+          </span>
+        )}
+      </button>
 
       <section className="relative py-20 px-6">
         <div className="container mx-auto text-center">
@@ -215,104 +146,127 @@ const CasaChetumal = () => {
         </div>
       </section>
 
-      <section className="py-20 px-6 bg-white/50 backdrop-blur-sm">
-        <div className="container mx-auto">
+      <section className="py-20 px-6 bg-white/50 backdrop-blur-sm relative overflow-hidden">
+        <div className="absolute top-10 left-10 w-40 h-40 bg-gradient-to-br from-amber-200/20 to-orange-200/20 rounded-full blur-3xl animate-pulse"></div>
+        <div className="absolute bottom-20 right-16 w-32 h-32 bg-gradient-to-tl from-yellow-200/30 to-orange-300/30 rounded-full blur-2xl animate-bounce"></div>
+        
+        <div className="container mx-auto relative z-10">
           <div className="text-center mb-16">
             <h3 className="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-800 mb-4">
-              Descubre Nuestros Espacios
+              Descubre Nuestro Espacio
             </h3>
-            <div className="flex justify-center items-center space-x-2 mb-4">
+            <div className="flex justify-center items-center space-x-2 mb-6">
               <div className="w-8 h-1 bg-gradient-to-r from-transparent to-amber-400 rounded-full"></div>
               <div className="w-16 h-1 bg-gradient-to-r from-amber-400 to-orange-500 rounded-full"></div>
               <div className="w-8 h-1 bg-gradient-to-r from-orange-500 to-transparent rounded-full"></div>
-            </div>{" "}
+            </div>
+            <p className="text-lg text-gray-600 max-w-2xl mx-auto leading-relaxed">
+              Un recorrido por nuestras instalaciones diseñadas para hacer de tu evento una experiencia única
+            </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
-            {videos.map((video, index) => (
-              <div
-                key={video.id}
-                className={`relative group cursor-pointer transform transition-all duration-500 hover:scale-105 ${
-                  currentVideo === index
-                    ? "scale-105 shadow-2xl"
-                    : "hover:shadow-xl"
-                }`}
-                onClick={() => handleVideoClick(index)}
-              >
-                <div className="relative overflow-hidden rounded-t-3xl bg-gradient-to-br from-amber-100 to-orange-100 aspect-square">
-                  {playingVideo === index ? (
-                    <video
-                      className="w-full h-full object-cover"
-                      autoPlay
-                      controls
-                      loop
-                      muted
-                      onError={() => setPlayingVideo(null)}
-                    >
-                      <source src={video.videoUrl} type="video/mp4" />
-                      Tu navegador no soporta videos HTML5.
-                    </video>
+          {/* Video */}
+          <div className="max-w-5xl mx-auto">
+            <div 
+              className="relative group cursor-pointer transform transition-all duration-700 hover:scale-[1.02]"
+              onClick={() => handleVideoClick(0)}
+            >
+              <div className="relative overflow-hidden rounded-3xl bg-gradient-to-br from-amber-100 to-orange-100 aspect-video shadow-2xl">
+                <div className="absolute inset-0 bg-gradient-to-r from-amber-400 via-orange-500 to-amber-400 rounded-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 animate-pulse"></div>
+                <div className="absolute inset-1 bg-white rounded-3xl overflow-hidden">
+                  
+                  {playingVideo === 0 ? (
+                    <div className="relative w-full h-full">
+                      <video
+                        className="w-full h-full object-cover"
+                        autoPlay
+                        controls
+                        loop
+                        muted
+                        onError={() => setPlayingVideo(null)}
+                      >
+                        <source src={videos[0].videoUrl} type="video/mp4" />
+                        Tu navegador no soporta videos HTML5.
+                      </video>
+                      <button
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          setPlayingVideo(null);
+                        }}
+                        className="absolute top-4 right-4 w-10 h-10 bg-black/50 backdrop-blur-md text-white rounded-full flex items-center justify-center hover:bg-black/70 transition-all duration-300"
+                      >
+                        <X size={20} />
+                      </button>
+                    </div>
                   ) : (
                     <>
                       <img
-                        src={video.thumbnail}
-                        alt={video.title}
-                        className="w-full h-full object-cover transition-transform duration-950 group-hover:scale-110"
+                        src={videos[0].thumbnail}
+                        alt={videos[0].title}
+                        className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110"
                       />
 
-                      <div className="absolute inset-0 bg-black/30 group-hover:bg-black/20 transition-all duration-300"></div>
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent group-hover:from-black/40 transition-all duration-500"></div>
 
-                      {/* Play del boton */}
-                      <div className="absolute inset-0 flex items-center justify-center">
-                        <div className="w-16 h-16 bg-white/90 rounded-full flex items-center justify-center transform group-hover:scale-110 transition-all duration-300 shadow-lg">
-                          <Play className="text-amber-900 ml-1" size={24} />
+                      <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
+                        <div className="relative">
+                          <div className="absolute inset-0 w-20 h-20 bg-white/20 rounded-full animate-ping"></div>
+                          <div className="absolute inset-0 w-20 h-20 bg-white/30 rounded-full animate-pulse"></div>
+                          
+                          <div className="relative w-20 h-20 bg-white/95 backdrop-blur-md rounded-full flex items-center justify-center transform group-hover:scale-110 transition-all duration-300 shadow-2xl border border-white/50">
+                            <Play className="text-amber-900 ml-1" size={32} />
+                          </div>
                         </div>
                       </div>
 
-                      {/* Activar indicador */}
-                      {currentVideo === index && (
-                        <div className="absolute top-4 right-4">
-                          <div className="w-4 h-4 bg-gradient-to-r from-amber-500 to-orange-500 rounded-full animate-pulse shadow-lg"></div>
+                      <div className="absolute bottom-0 left-0 right-0 p-8 bg-gradient-to-t from-black/80 to-transparent pointer-events-none">
+                        <h4 className="text-2xl md:text-3xl font-bold text-white mb-2">
+                          {videos[0].title}
+                        </h4>
+                        <p className="text-gray-200 text-base md:text-lg leading-relaxed max-w-2xl">
+                          {videos[0].description}
+                        </p>
+                        
+                        <div className="flex items-center mt-4 space-x-2">
+                          <div className="flex space-x-1">
+                            {[...Array(5)].map((_, i) => (
+                              <Star
+                                key={i}
+                                className="w-5 h-5 text-amber-400 fill-current"
+                              />
+                            ))}
+                          </div>
+                          <span className="text-white/80 text-sm">Calificación excepcional</span>
                         </div>
-                      )}
+                      </div>
+
+                      <div className="absolute top-6 right-6 pointer-events-none">
+                        <div className="flex items-center space-x-2 bg-black/50 backdrop-blur-md rounded-full px-4 py-2">
+                          <div className="w-3 h-3 bg-red-500 rounded-full animate-pulse"></div>
+                          <span className="text-white text-sm font-medium">Haz clic para reproducir</span>
+                        </div>
+                      </div>
                     </>
                   )}
                 </div>
-
-                <div className="mt-6 text-center">
-                  <h4 className="text-xl md:text-2xl font-bold text-gray-800 mb-2">
-                    {video.title}
-                  </h4>
-                  <p className="text-gray-900 leading-relaxed text-sm md:text-base">
-                    {video.description}
-                  </p>
-
-                  <div className="flex justify-center mt-3 mb-7 space-x-1">
-                    {[...Array(5)].map((_, i) => (
-                      <Star
-                        key={i}
-                        className="w-4 h-4 text-amber-400 fill-current"
-                      />
-                    ))}
-                  </div>
-                </div>
               </div>
-            ))}
-          </div>
+            </div>
 
-          {/* progreso del Video */}
-          <div className="flex justify-center mt-12 space-x-3">
-            {videos.map((_, index) => (
-              <button
-                key={index}
-                className={`w-3 h-3 rounded-full transition-all duration-300 ${
-                  currentVideo === index
-                    ? "bg-gradient-to-r from-amber-500 to-orange-500 w-8"
-                    : "bg-gray-300 hover:bg-amber-300"
-                }`}
-                onClick={() => setCurrentVideo(index)}
-              ></button>
-            ))}
+            <div className="mt-12 grid grid-cols-1 md:grid-cols-3 gap-8">
+              {[
+                { icon: Users, title: "Capacidad", description: "Hasta 200 personas" },
+                { icon: Clock, title: "Disponibilidad", description: "7 días a la semana" },
+                { icon: Sparkles, title: "Servicios", description: "Con variedades de paquetes" }
+              ].map((feature, index) => (
+                <div key={index} className="text-center group">
+                  <div className="inline-flex items-center justify-center w-16 h-16 bg-gradient-to-br from-amber-400 to-orange-500 rounded-2xl mb-4 group-hover:scale-110 transition-transform duration-300 shadow-lg">
+                    <feature.icon size={24} className="text-white" />
+                  </div>
+                  <h5 className="text-xl font-bold text-gray-800 mb-2">{feature.title}</h5>
+                  <p className="text-gray-600">{feature.description}</p>
+                </div>
+              ))}
+            </div>
           </div>
         </div>
       </section>
@@ -508,10 +462,23 @@ const CasaChetumal = () => {
         </div>
       </footer>
 
-      <ReservationAlert
+      {/* <ReservationAlert
         isOpen={showReservationModal}
         onClose={handleCloseModal}
+      /> */}
+
+      <ReservationModal
+        isOpen={showReservationModal}
+        onClose={handleCloseModal}
+        onAddToCart={handleAddToCart}
       />
+
+      <CartModal
+        isOpen={isCartOpen}
+        onClose={() => setIsCartOpen(false)}
+        cartItems={cartItems}
+      />
+
 
       <style jsx>{`
         @keyframes fade-in {
