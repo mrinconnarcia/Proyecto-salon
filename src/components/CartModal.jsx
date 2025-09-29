@@ -1,9 +1,15 @@
 import React from "react";
 
-const CartModal = ({ isOpen, onClose, cartItems }) => {
+const CartModal = ({ isOpen, onClose, cartItems, onProceedToPayment }) => {
   if (!isOpen) return null;
 
   const total = cartItems.reduce((acc, item) => acc + item.total, 0);
+
+  const handlePayment = () => {
+    if (cartItems.length > 0) {
+      onProceedToPayment(cartItems, total);
+    }
+  };
 
   return (
     <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
@@ -34,7 +40,11 @@ const CartModal = ({ isOpen, onClose, cartItems }) => {
           </div>
         )}
 
-        <button className="mt-6 w-full bg-amber-700 text-white py-2 rounded-lg hover:bg-amber-800">
+        <button 
+          onClick={handlePayment}
+          disabled={cartItems.length === 0}
+          className="mt-6 w-full bg-amber-700 text-white py-2 rounded-lg hover:bg-amber-800 disabled:bg-gray-400 disabled:cursor-not-allowed"
+        >
           Pagar
         </button>
       </div>
