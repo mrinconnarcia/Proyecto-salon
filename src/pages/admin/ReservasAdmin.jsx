@@ -1,8 +1,3 @@
-<<<<<<< HEAD
-import React from "react";
-
-// reservas xd 
-=======
 import React, { useState } from "react";
 import {
   ChevronDown,
@@ -359,4 +354,3 @@ const ReservasComponent = () => {
 };
 
 export default ReservasComponent;
->>>>>>> c549941e4dce969ffe7dc4dd543cbf0b6a411004

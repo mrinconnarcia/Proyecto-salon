@@ -21,7 +21,6 @@ import {
   PartyPopper,
   ShoppingCart,
 } from "lucide-react";
-import ReservationAlert from "../components/ReservationAlert";
 
 const CasaChetumal = () => {
   const [currentVideo, setCurrentVideo] = useState(0);
@@ -526,12 +525,7 @@ const CasaChetumal = () => {
             </div>
           </footer>
 
-          {/* {/*<ReservationAlert
-        isOpen={showReservationModal}
-        onClose={handleCloseModal}
-      />*/}
-
-      <ReservationModal
+          {/* <ReservationAlert
         isOpen={showReservationModal}
         onClose={handleCloseModal}
       /> */}

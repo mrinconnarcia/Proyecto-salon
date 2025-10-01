@@ -14,7 +14,6 @@ import {
   FormControlLabel,
   Checkbox,
 } from "@mui/material";
-<<<<<<< HEAD
 import { X } from "lucide-react";
 import "../assets/styles/reservationModal.css";
 
@@ -36,18 +35,7 @@ const occupiedDates = [
   dayjs("2025-10-02"),
 ];
 
-const ReservationModal = ({ isOpen, onClose }) => {
-=======
-import DatePicker from "react-datepicker";
-import "react-datepicker/dist/react-datepicker.css";
-import { addHours, setHours, setMinutes } from "date-fns";
-import { X } from "lucide-react";
-// import '../assets/styles/reservationModal.css'
-
-const steps = ["Datos del Cliente", "Fecha y Hora", "Paquete", "Resumen"];
-
 const ReservationModal = ({ isOpen, onClose, onAddToCart }) => {
->>>>>>> c549941e4dce969ffe7dc4dd543cbf0b6a411004
   const [activeStep, setActiveStep] = useState(0);
   const [formData, setFormData] = useState({
     nombre: "",
@@ -61,34 +49,18 @@ const ReservationModal = ({ isOpen, onClose, onAddToCart }) => {
     extras: [],
   });
 
-<<<<<<< HEAD
-=======
-  // Simulación de fechas ocupadas (backend)
-  const fechasOcupadas = [new Date(2025, 8, 25, 9), new Date(2025, 8, 28, 15)];
-
->>>>>>> c549941e4dce969ffe7dc4dd543cbf0b6a411004
   if (!isOpen) return null;
 
   const handleNext = () => setActiveStep((prev) => prev + 1);
   const handleBack = () => setActiveStep((prev) => prev - 1);
-<<<<<<< HEAD
-
-=======
->>>>>>> c549941e4dce969ffe7dc4dd543cbf0b6a411004
   const handleFileChange = (e) =>
     setFormData({ ...formData, ine: e.target.files[0] });
 
   const handleDateChange = (date) => {
-<<<<<<< HEAD
     if (!date) return;
     const start = date.toDate();
     const end = new Date(start.getTime() + 7 * 60 * 60 * 1000); // +7 horas
     setFormData({ ...formData, fecha: date, horaInicio: start, horaFin: end });
-=======
-    const horaInicio = setMinutes(setHours(date, date.getHours()), 0);
-    const horaFin = addHours(horaInicio, 7);
-    setFormData({ ...formData, fecha: date, horaInicio, horaFin });
->>>>>>> c549941e4dce969ffe7dc4dd543cbf0b6a411004
   };
 
   const handlePaqueteSelect = (paquete) =>
@@ -102,24 +74,11 @@ const ReservationModal = ({ isOpen, onClose, onAddToCart }) => {
   };
 
   const isDateDisabled = (date) =>
-<<<<<<< HEAD
     occupiedDates.some((d) => d.isSame(date, "day"));
 
   return (
     <div className="fixed inset-0 bg-black/50 backdrop-blur-sm flex items-center justify-center z-50 p-4">
-      <div className="bg-gradient-to-br from-amber-50 via-orange-50 to-yellow-50 rounded-3xl shadow-2xl w-full max-w-5xl mx-auto relative animate-scale-in overflow-y-auto min-h-2/3 max-h-[90vh]">
-=======
-    fechasOcupadas.some(
-      (ocupada) =>
-        date.getDate() === ocupada.getDate() &&
-        date.getMonth() === ocupada.getMonth() &&
-        date.getFullYear() === ocupada.getFullYear()
-    );
-
-  return (
-    <div className="fixed inset-0 bg-black/50 backdrop-blur-sm flex items-center justify-center z-50 p-4">
-      <div className="bg-gradient-to-br from-amber-50 via-orange-50 to-yellow-50 rounded-3xl shadow-2xl w-full max-w-3xl mx-auto relative animate-scale-in overflow-y-auto min-h-2/3 max-h-[90vh]">
->>>>>>> c549941e4dce969ffe7dc4dd543cbf0b6a411004
+      <div className="bg-gradient-to-br from-amber-50 via-orange-50 to-yellow-50 rounded-3xl shadow-2xl w-full max-w-4xl mx-auto relative animate-scale-in overflow-y-auto min-h-2/3 max-h-[90vh]">
         {/* Botón cerrar */}
         <button
           onClick={onClose}
@@ -147,7 +106,6 @@ const ReservationModal = ({ isOpen, onClose, onAddToCart }) => {
           </Stepper>
 
           <Box className="mt-6">
-<<<<<<< HEAD
             {/* Paso 1 - Datos + Fecha */}
             {activeStep === 0 && (
               <Card className="shadow-lg rounded-2xl py-3 px-2">
@@ -158,16 +116,6 @@ const ReservationModal = ({ isOpen, onClose, onAddToCart }) => {
                         variant="standard"
                         label="Nombre"
                         required
-=======
-            {/* Paso 1 */}
-            {activeStep === 0 && (
-              <Card className="shadow-lg rounded-2xl py-3 px-2">
-                <CardContent>
-                  <Grid container spacing={2}>
-                    <Grid item xs={6}>
-                      <TextField
-                        label="Nombre"
->>>>>>> c549941e4dce969ffe7dc4dd543cbf0b6a411004
                         fullWidth
                         value={formData.nombre}
                         onChange={(e) =>
@@ -177,7 +125,6 @@ const ReservationModal = ({ isOpen, onClose, onAddToCart }) => {
                     </Grid>
                     <Grid item xs={6}>
                       <TextField
-<<<<<<< HEAD
                         variant="standard"
                         label="Apellidos"
                         required
@@ -185,28 +132,14 @@ const ReservationModal = ({ isOpen, onClose, onAddToCart }) => {
                         value={formData.apellidos}
                         onChange={(e) =>
                           setFormData({ ...formData, apellidos: e.target.value })
-=======
-                        label="Apellidos"
-                        fullWidth
-                        value={formData.apellidos}
-                        onChange={(e) =>
-                          setFormData({
-                            ...formData,
-                            apellidos: e.target.value,
-                          })
->>>>>>> c549941e4dce969ffe7dc4dd543cbf0b6a411004
                         }
                       />
                     </Grid>
                     <Grid item xs={6}>
                       <TextField
-<<<<<<< HEAD
                         variant="standard"
                         label="Teléfono"
                         required
-=======
-                        label="Teléfono"
->>>>>>> c549941e4dce969ffe7dc4dd543cbf0b6a411004
                         fullWidth
                         value={formData.telefono}
                         onChange={(e) =>
@@ -215,7 +148,6 @@ const ReservationModal = ({ isOpen, onClose, onAddToCart }) => {
                       />
                     </Grid>
                     <Grid item xs={6}>
-<<<<<<< HEAD
                       <label htmlFor="file-input">
                         <Button variant="contained" component="span" style={{backgroundColor:'#A96E4A' }}>
                           Subir Idenficacion (INE, IFE, ...)
@@ -295,17 +227,6 @@ const ReservationModal = ({ isOpen, onClose, onAddToCart }) => {
                   </Box>
                 </CardContent>
                 <CardActions style={{display:'flex', justifyContent:'right'}}>
-=======
-                      <input
-                        type="file"
-                        accept="image/*,application/pdf"
-                        onChange={handleFileChange}
-                      />
-                    </Grid>
-                  </Grid>
-                </CardContent>
-                <CardActions>
->>>>>>> c549941e4dce969ffe7dc4dd543cbf0b6a411004
                   <Button
                     variant="contained"
                     color="primary"
@@ -317,9 +238,9 @@ const ReservationModal = ({ isOpen, onClose, onAddToCart }) => {
               </Card>
             )}
 
-<<<<<<< HEAD
             {/* Paso 2 - Selección de Paquete
-              PASO 2: PAQUETES, PASO3: PERSONALIZAR (listar Botanas, Bebidas, Muisca)   */}
+              PASO 2: PAQUETES, PASO3: PERSONALIZAR (listar Botanas, Bebidas, Muisca)   
+              TODO: VER SI REGRESO A MI VERSION ORIGINAL Y DE AHI DESCARGAR UNA VERSION DEL DE MARTIN PA VER SI SOBRE ESA PONGO LO MIO (revisar si no hice cambios en home)  */}
             {activeStep === 1 && (
               <Card className="shadow-lg rounded-2xl">
                 <CardContent>
@@ -487,50 +408,6 @@ const ReservationModal = ({ isOpen, onClose, onAddToCart }) => {
                 </CardContent>
 
                 <CardActions style={{ display: "flex", justifyContent: "right" }}>
-=======
-            {/* Paso 2 -- IMPLEMENTAR EL USO DEL COMPONENTE DATETIME DE mui PARA TENER UN SELECTOR MAS BONITO
-                ADEMÁS INVESTIGAR COMO INVALIDAR LA SELECCION DE FECHAS DETERMINADAS Y AGREGAR MARCADORES A ESAS FECHAS
-                https://mui.com/x/react-date-pickers/date-time-picker/#landscape-orientation
-                https://mui.com/x/react-date-pickers/ */}
-            {activeStep === 1 && (
-              <Card className="shadow-lg rounded-2xl">
-                <CardContent>
-                  <Typography className="mb-2 font-semibold text-gray-700">
-                    Selecciona fecha y hora (9am - 11pm)
-                  </Typography>
-                  <DatePicker
-                    selected={formData.fecha}
-                    onChange={handleDateChange}
-                    showTimeSelect
-                    minTime={setHours(setMinutes(new Date(), 0), 9)}
-                    maxTime={setHours(setMinutes(new Date(), 0), 23)}
-                    filterDate={(date) => !isDateDisabled(date)}
-                    dateFormat="dd/MM/yyyy h:mm aa"
-                    className="border p-2 rounded-md w-full focus:ring-2 focus:ring-orange-400"
-                    popperModifiers={[
-                      {
-                        name: "offset",
-                        options: { offset: [0, 10] }, // separa un poco del input
-                      },
-                      {
-                        name: "preventOverflow",
-                        options: { boundary: "viewport" }, // evita que se corte
-                      },
-                    ]}
-                    popperContainer={({ children }) => (
-                      <div className="z-50">{children}</div> // asegura que flote sobre todo
-                    )}
-                  />
-
-                  {formData.horaInicio && (
-                    <p className="mt-2 text-gray-600">
-                      Inicio: {formData.horaInicio.toLocaleTimeString()} | Fin:{" "}
-                      {formData.horaFin.toLocaleTimeString()}
-                    </p>
-                  )}
-                </CardContent>
-                <CardActions>
->>>>>>> c549941e4dce969ffe7dc4dd543cbf0b6a411004
                   <Button onClick={handleBack}>Atrás</Button>
                   <Button
                     variant="contained"
@@ -543,70 +420,11 @@ const ReservationModal = ({ isOpen, onClose, onAddToCart }) => {
               </Card>
             )}
 
-<<<<<<< HEAD
 
             {/* Paso 3 - Resumen */}
             {activeStep === 2 && (
               <Card className="shadow-lg rounded-2xl">
                 <CardContent>
-=======
-            {/* Paso 3 */}
-            {activeStep === 2 && (
-              <Card className="shadow-lg rounded-2xl">
-                <CardContent>
-                  <Typography className="mb-4 font-semibold">
-                    Selecciona tu paquete:
-                  </Typography>
-                  <Grid container spacing={2}>
-                    {["Básico", "Premium", "VIP"].map((p) => (
-                      <Grid item xs={4} key={p}>
-                        <Card
-                          onClick={() => handlePaqueteSelect(p)}
-                          className={`cursor-pointer p-4 ${
-                            formData.paquete === p
-                              ? "bg-orange-100 border-2 border-orange-500"
-                              : ""
-                          }`}
-                        >
-                          <Typography>{p}</Typography>
-                        </Card>
-                      </Grid>
-                    ))}
-                  </Grid>
-                  <Typography className="mt-4 font-semibold">
-                    Extras:
-                  </Typography>
-                  {["Botanas", "DJ", "Banda", "Norteño"].map((extra) => (
-                    <FormControlLabel
-                      key={extra}
-                      control={
-                        <Checkbox
-                          checked={formData.extras.includes(extra)}
-                          onChange={() => handleExtraSelect(extra)}
-                        />
-                      }
-                      label={extra}
-                    />
-                  ))}
-                </CardContent>
-                <CardActions>
-                  <Button onClick={handleBack}>Atrás</Button>
-                  <Button
-                    variant="contained"
-                    color="primary"
-                    onClick={handleNext}
-                  >
-                    Siguiente
-                  </Button>
-                </CardActions>
-              </Card>
-            )}
-
-            {/* Paso 4 */}
-            {activeStep === 3 && (
-              <Card className="shadow-lg rounded-2xl">
-                <CardContent>
->>>>>>> c549941e4dce969ffe7dc4dd543cbf0b6a411004
                   <Typography variant="h6">
                     Resumen de tu reservación
                   </Typography>
@@ -618,11 +436,7 @@ const ReservationModal = ({ isOpen, onClose, onAddToCart }) => {
                       <b>Teléfono:</b> {formData.telefono}
                     </li>
                     <li>
-<<<<<<< HEAD
                       <b>Fecha:</b> {formData.fecha?.toDate().toLocaleDateString()}{" "}
-=======
-                      <b>Fecha:</b> {formData.fecha?.toLocaleDateString()}{" "}
->>>>>>> c549941e4dce969ffe7dc4dd543cbf0b6a411004
                       {formData.horaInicio?.toLocaleTimeString()} -{" "}
                       {formData.horaFin?.toLocaleTimeString()}
                     </li>
@@ -637,30 +451,22 @@ const ReservationModal = ({ isOpen, onClose, onAddToCart }) => {
                     Total: $15,000 MXN
                   </Typography>
                 </CardContent>
-<<<<<<< HEAD
                 <CardActions style={{display:'flex', justifyContent:'right'}}>
-=======
-                <CardActions>
->>>>>>> c549941e4dce969ffe7dc4dd543cbf0b6a411004
                   <Button onClick={handleBack}>Atrás</Button>
                   <Button
                     variant="contained"
                     color="success"
                     onClick={() => {
-<<<<<<< HEAD
-                      alert("Reservación confirmada 🚀");
-=======
                       const reserva = {
                         cliente: `${formData.nombre} ${formData.apellidos}`,
                         telefono: formData.telefono,
-                        fecha: formData.fecha?.toLocaleDateString(),
+                        fecha: formData.fecha?.toDate().toLocaleDateString(),
                         hora: `${formData.horaInicio?.toLocaleTimeString()} - ${formData.horaFin?.toLocaleTimeString()}`,
                         paquete: formData.paquete,
                         extras: formData.extras,
                         total: 15000, // aquí puedes calcular dinámicamente
                       };
                       onAddToCart(reserva); // lo mandamos al carrito
->>>>>>> c549941e4dce969ffe7dc4dd543cbf0b6a411004
                       onClose();
                     }}
                   >
