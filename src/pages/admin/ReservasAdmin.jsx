@@ -106,65 +106,6 @@ const ReservasComponent = () => {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-amber-50 via-orange-50 to-yellow-50">
-      <div className="flex relative">
-        {/* Mobile Menu Overlay */}
-        {sidebarOpen && (
-          <div
-            className="fixed inset-0 bg-black bg-opacity-50 z-40 lg:hidden"
-            onClick={() => setSidebarOpen(false)}
-          />
-        )}
-
-        {/* Sidebar */}
-        <div
-          className={`
-          fixed lg:relative lg:translate-x-0 transform transition-transform duration-300 ease-in-out z-50
-          w-64 bg-gradient-to-b from-amber-200 to-orange-300 min-h-screen shadow-xl
-          ${sidebarOpen ? "translate-x-0" : "-translate-x-full"}
-        `}
-        >
-          <div className="p-6">
-            <div className="flex justify-between items-center mb-8">
-              <h1 className="text-xl lg:text-2xl font-bold text-amber-900">
-                Casa Chetumal
-              </h1>
-              <button
-                onClick={() => setSidebarOpen(false)}
-                className="lg:hidden p-2 rounded-md text-amber-900 hover:bg-amber-100"
-              >
-                <X className="w-5 h-5" />
-              </button>
-            </div>
-
-            <nav className="space-y-2">
-              <a
-                href="#"
-                className="block py-3 px-4 text-amber-800 hover:bg-amber-100 rounded-lg transition-colors duration-200 font-medium"
-              >
-                Dashboard
-              </a>
-              <a
-                href="#"
-                className="block py-3 px-4 text-amber-800 hover:bg-amber-100 rounded-lg transition-colors duration-200 font-medium"
-              >
-                Calendario
-              </a>
-              <a
-                href="#"
-                className="block py-3 px-4 bg-amber-900 text-white rounded-lg font-medium shadow-lg"
-              >
-                Reservas
-              </a>
-              <a
-                href="#"
-                className="block py-3 px-4 text-amber-800 hover:bg-amber-100 rounded-lg transition-colors duration-200 font-medium"
-              >
-                Pagos
-              </a>
-            </nav>
-          </div>
-        </div>
-
         {/* Main Content */}
         <div className="flex-1 p-4 lg:p-8 w-full lg:w-auto">
           {/* Header */}
@@ -349,8 +290,7 @@ const ReservasComponent = () => {
           </div>
         </div>
       </div>
-    </div>
-  );
+    );
 };
 
 export default ReservasComponent;
