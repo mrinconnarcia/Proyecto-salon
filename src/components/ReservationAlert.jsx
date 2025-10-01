@@ -1,5 +1,5 @@
-import React, { useEffect } from 'react';
-import { X, CheckCircle } from 'lucide-react';
+import React, { useEffect } from "react";
+import { X, CheckCircle } from "lucide-react";
 
 const ReservationAlert = ({ isOpen, onClose }) => {
   useEffect(() => {
@@ -7,7 +7,7 @@ const ReservationAlert = ({ isOpen, onClose }) => {
       const timer = setTimeout(() => {
         onClose();
       }, 4000); // 4 segundos
-      
+
       return () => clearTimeout(timer);
     }
   }, [isOpen, onClose]);
@@ -22,26 +22,31 @@ const ReservationAlert = ({ isOpen, onClose }) => {
           <div className="w-20 h-20 bg-gradient-to-br from-green-400 to-green-600 rounded-full flex items-center justify-center mx-auto mb-6 shadow-lg">
             <CheckCircle className="text-white" size={40} />
           </div>
-          
+
           <h3 className="text-2xl font-bold text-gray-800 mb-4">
             ¡Reservación Exitosa!
           </h3>
-          
+
           <div className="bg-white/80 backdrop-blur-sm rounded-2xl p-6 mb-6 border border-amber-200">
             <p className="text-gray-700 text-lg leading-relaxed">
-              Tu reservación en <span className="font-semibold text-amber-800">Casa Chetumal</span> se 
-              realizó de manera exitosa para el día{' '}
-              <span className="font-bold text-orange-800">sábado 17 de agosto del 2024</span>
+              Tu reservación en{" "}
+              <span className="font-semibold text-amber-800">
+                Casa Chetumal
+              </span>{" "}
+              se realizó de manera exitosa para el día{" "}
+              <span className="font-bold text-orange-800">
+                sábado 17 de agosto del 2024
+              </span>
             </p>
           </div>
-          
+
           <button
             onClick={onClose}
             className="bg-gradient-to-r from-amber-900 to-orange-900 text-white px-6 py-3 rounded-full font-semibold hover:from-amber-950 hover:to-orange-950 transform hover:scale-105 transition-all duration-300 shadow-lg"
           >
             Continuar
           </button>
-          
+
           <button
             onClick={onClose}
             className="absolute top-4 right-4 text-gray-500 hover:text-gray-700 transition-colors duration-200"
@@ -53,10 +58,16 @@ const ReservationAlert = ({ isOpen, onClose }) => {
 
       <style jsx>{`
         @keyframes scale-in {
-          from { opacity: 0; transform: scale(0.9) translateY(20px); }
-          to { opacity: 1; transform: scale(1) translateY(0); }
+          from {
+            opacity: 0;
+            transform: scale(0.9) translateY(20px);
+          }
+          to {
+            opacity: 1;
+            transform: scale(1) translateY(0);
+          }
         }
-        
+
         .animate-scale-in {
           animation: scale-in 0.4s ease-out;
         }
