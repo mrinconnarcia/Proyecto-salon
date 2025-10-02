@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { X, CheckCircle } from "lucide-react";
 
-const ReservationAlert = ({ isOpen, onClose }) => {
+const ReservationAlert = ({ isOpen, onClose, cartData }) => {
   useEffect(() => {
     if (isOpen) {
       const timer = setTimeout(() => {
@@ -35,8 +35,13 @@ const ReservationAlert = ({ isOpen, onClose }) => {
               </span>{" "}
               se realizó de manera exitosa para el día{" "}
               <span className="font-bold text-orange-800">
-                sábado 17 de agosto del 2024
+                {cartData.items[0]?.fecha}
+              </span>{" "}
+              a las{" "}
+              <span className="font-bold text-orange-800">
+                {cartData.items[0]?.hora}
               </span>
+              . ¡Te esperamos!
             </p>
           </div>
 

@@ -397,6 +397,7 @@ const PaymentMethod = ({ cartData, onBack, onSuccess }) => {
           setShowReservationSuccess(false);
           onSuccess();
         }}
+        cartData={cartData}
       />
     </div>
   );
