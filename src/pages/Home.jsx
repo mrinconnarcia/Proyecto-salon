@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from "react";
-import ReservationAlert from "../components/ReservationAlert";
+import { useNavigate } from "react-router-dom";
 import ReservationModal from "../pages/Reservation";
 import NavbarHome from "../components/NavbarHome";
 import CartModal from "../components/CartModal";
-import PaymentMethod from "../components/PaymentMethod"; // ⬅️ NUEVO
+import PaymentMethod from "../components/PaymentMethod";
 import {
   Play,
   MapPin,
@@ -24,14 +24,14 @@ import {
 
 const CasaChetumal = () => {
   const [currentVideo, setCurrentVideo] = useState(0);
-  const [isPlaying, setIsPlaying] = useState(false);
   const [playingVideo, setPlayingVideo] = useState(null);
   const [showReservationModal, setShowReservationModal] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [cartItems, setCartItems] = useState([]);
   const [isCartOpen, setIsCartOpen] = useState(false);
-  const [showPayment, setShowPayment] = useState(false); // ⬅️ NUEVO
-  const [paymentData, setPaymentData] = useState(null); // ⬅️ NUEVO
+  const [showPayment, setShowPayment] = useState(false); 
+  const [paymentData, setPaymentData] = useState(null);
+    const navigate = useNavigate();
 
   const handleAddToCart = (item) => {
     setCartItems((prev) => [...prev, item]); // agrega al carrito
@@ -50,6 +50,14 @@ const CasaChetumal = () => {
   const handleBackToCart = () => {
     setShowPayment(false);
     setIsCartOpen(true);
+  };
+
+   // función cuando se confirme el pago
+  const handlePaymentSuccess = () => {
+    setCartItems([]); // limpia carrito
+    setShowPayment(false);
+    setPaymentData(null);
+    navigate("/"); // redirige a home
   };
 
   const videos = [
@@ -114,7 +122,11 @@ const CasaChetumal = () => {
     <>
       {showPayment && paymentData ? (
         // Solo muestra el componente de pago
-        <PaymentMethod cartData={paymentData} onBack={handleBackToCart} />
+       <PaymentMethod
+          cartData={paymentData}
+          onBack={handleBackToCart}
+          onSuccess={handlePaymentSuccess}
+        />
       ) : (
         <div className="min-h-screen bg-gradient-to-br from-amber-50 via-orange-50 to-yellow-50">
           <NavbarHome
@@ -524,25 +536,17 @@ const CasaChetumal = () => {
               </div>
             </div>
           </footer>
-
-          {/* <ReservationAlert
-        isOpen={showReservationModal}
-        onClose={handleCloseModal}
-      /> */}
-
           <ReservationModal
             isOpen={showReservationModal}
             onClose={handleCloseModal}
             onAddToCart={handleAddToCart}
           />
-
           <CartModal
             isOpen={isCartOpen}
             onClose={() => setIsCartOpen(false)}
             cartItems={cartItems}
             onProceedToPayment={handleProceedToPayment}
           />
-
           <ReservationModal
             isOpen={showReservationModal}
             onClose={handleCloseModal}

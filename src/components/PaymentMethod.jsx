@@ -1,13 +1,17 @@
 import { useState } from "react";
+import ReservationAlert from "./ReservationAlert.jsx";
+import PaymentSuccessAlert from "./PaymentAlert.jsx";
 import { Smartphone, Banknote } from "lucide-react";
 
-const PaymentMethod = ({ cartData, onBack }) => {
+const PaymentMethod = ({ cartData, onBack, onSuccess }) => {
   const [selectedMethod, setSelectedMethod] = useState("");
   const [formData, setFormData] = useState({
     firstName: "",
     lastName: "",
     receipt: null,
   });
+  const [showPaymentSuccess, setShowPaymentSuccess] = useState(false);
+  const [showReservationSuccess, setShowReservationSuccess] = useState(false);
 
   const parseDate = (dateStr) => {
     if (!dateStr) return null;
@@ -75,11 +79,10 @@ const PaymentMethod = ({ cartData, onBack }) => {
       return;
     }
 
-    alert(
-      `Pago confirmado por ${
-        selectedMethod === "transfer" ? "Transferencia" : "Efectivo"
-      }\nTotal: $${cartData.total}`
-    );
+    // Simulación de petición exitosa
+    setTimeout(() => {
+      setShowPaymentSuccess(true);
+    }, 1000);
   };
 
   return (
@@ -381,6 +384,20 @@ const PaymentMethod = ({ cartData, onBack }) => {
           </div>
         )}
       </div>
+      <PaymentSuccessAlert
+        isOpen={showPaymentSuccess}
+        onClose={() => {
+          setShowPaymentSuccess(false);
+          setShowReservationSuccess(true);
+        }}
+      />
+      <ReservationAlert
+        isOpen={showReservationSuccess}
+        onClose={() => {
+          setShowReservationSuccess(false);
+          onSuccess();
+        }}
+      />
     </div>
   );
 };

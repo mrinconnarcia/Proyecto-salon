@@ -57,15 +57,6 @@ const PaymentSuccessAlert = ({ isOpen, onClose }) => {
             </div>
           </div>
 
-          <div className="text-center mb-8">
-            <p className="text-gray-700 text-lg leading-relaxed mb-4">
-              <strong>¡Gracias por tu compra!</strong>
-            </p>
-            <p className="text-gray-600">
-              Recibirás un correo de confirmación en los próximos minutos.
-            </p>
-          </div>
-
           <button
             onClick={onClose}
             className="w-full bg-gradient-to-r from-green-500 to-emerald-600 hover:from-green-600 hover:to-emerald-700 text-white font-bold py-4 px-8 rounded-2xl transition-all duration-300 transform hover:scale-105 hover:shadow-xl active:scale-95 text-lg"
