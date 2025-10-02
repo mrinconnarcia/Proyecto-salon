@@ -41,7 +41,8 @@ const ReservationAlert = ({ isOpen, onClose, cartData }) => {
               <span className="font-bold text-orange-800">
                 {cartData.items[0]?.hora}
               </span>
-              . ¡Te esperamos!
+              .<br /> 
+              ¡Te esperamos!
             </p>
           </div>
 
