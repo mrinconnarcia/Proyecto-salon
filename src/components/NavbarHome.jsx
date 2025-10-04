@@ -15,8 +15,8 @@ const NavbarHome = ({
         <div className="flex items-center justify-between">
           {/* Logo */}
           <div className="flex items-center space-x-3">
-            <div className="w-12 h-12 bg-gradient-to-br from-amber-900 to-orange-950 rounded-full flex items-center justify-center">
-              <span className="text-white font-bold text-xl">C</span>
+            <div className="w-13 h-13 mr-1 bg-gradient-to-br from-amber-900 to-orange-950 rounded-full flex items-center justify-center">
+              <img src="../src/assets/img/logo.png" alt="logo" className="w-full max-h-28 object-cover rounded-lg" />
             </div>
             <div>
               <h1 className="text-2xl font-bold bg-gradient-to-r from-amber-900 to-orange-950 bg-clip-text text-transparent">
