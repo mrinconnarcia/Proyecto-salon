@@ -100,6 +100,10 @@ const CasaChetumal = () => {
     }
   };
 
+  const handleRemoveItem = (index) => {
+  setCartItems(cartItems.filter((_, i) => i !== index));
+};
+
   useEffect(() => {
     const interval = setInterval(() => {
       setCurrentVideo((prev) => (prev + 1) % videos.length);
@@ -546,6 +550,7 @@ const CasaChetumal = () => {
             onClose={() => setIsCartOpen(false)}
             cartItems={cartItems}
             onProceedToPayment={handleProceedToPayment}
+              onRemoveItem={handleRemoveItem}
           />
           <ReservationModal
             isOpen={showReservationModal}
