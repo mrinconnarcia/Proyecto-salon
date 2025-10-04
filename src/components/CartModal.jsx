@@ -26,8 +26,14 @@ const CartModal = ({ isOpen, onClose, cartItems, onProceedToPayment }) => {
             {cartItems.map((item, idx) => (
               <div key={idx} className="border-b pb-2">
                 <p><b>Cliente:</b> {item.cliente}</p>
-                <p><b>Paquete:</b> {item.paquete}</p>
-                <p><b>Extras:</b> {item.extras.join(", ")}</p>
+                <p><b>Adicionales:</b></p>
+                <ul className="ml-6">
+                    {Object.entries(item.seleccionados).map(([name, qty]) =>
+                      qty > 0 && (
+                        <li key={name}>{qty} × {name}</li>
+                      )
+                    )}
+                  </ul>
                 <p className="text-gray-600 text-sm">{item.fecha} - {item.hora}</p>
                 <p className="font-semibold">Total: ${item.total}</p>
               </div>

@@ -111,12 +111,16 @@ const PaymentMethod = ({ cartData, onBack, onSuccess }) => {
           {cartData?.items?.map((item, idx) => (
             <div key={idx} className="border-b pb-3 mb-3">
               <p className="font-semibold">{item.cliente}</p>
-              <p className="text-sm text-gray-600">Paquete: {item.paquete}</p>
+              <p><b>Adicionales:</b></p>
+              <ul className="ml-6">
+                  {Object.entries(item.seleccionados).map(([name, qty]) =>
+                    qty > 0 && (
+                      <li key={name}>{qty} × {name}</li>
+                    )
+                  )}
+                </ul>
               <p className="text-sm text-gray-600">
                 Fecha: {item.fecha} - {item.hora}
-              </p>
-              <p className="text-sm text-gray-600">
-                Extras: {item.extras.join(", ")}
               </p>
             </div>
           ))}
